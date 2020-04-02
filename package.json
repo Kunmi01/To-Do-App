@@ -11,10 +11,16 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src",
     "format": "npm run prettier -- --write",
-    "prettier": "prettier \"src/**/*.+(js|jsx|json|yml|yaml|css|less|scss|ts|tsx|md|graphql|mdx)\""
+    "prettier": "prettier \"src/**/*.+(js|jsx|json|yml|yaml|css|less|scss|ts|tsx|md|graphql|mdx)\"",
+    "precommit": "lint-staged"
   },
   "author": "Kunmi Ibironke",
   "license": "ISC",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run precommit"
+    }
+  },
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
@@ -32,6 +38,8 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^3.0.0",
     "file-loader": "^6.0.0",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.1.1",
     "node-sass": "^4.13.1",
     "prettier": "2.0.2",
     "sass-loader": "^8.0.2",
@@ -50,5 +58,10 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "terser-webpack-plugin": "^2.3.5"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ]
 }
