@@ -1,12 +1,19 @@
 {
   "parser": "babel-eslint",
-  "extends": ["airbnb", "prettier", "prettier/react"],
+  "plugins": ["react", "react-hooks", "jsx-a11y", "import", "jest", "prettier"],
+  "extends": ["airbnb", "plugin:prettier/recommended", "prettier/react"],
   "rules": {
+    "no-console": 1,
     "react/jsx-filename-extension": ["error", { "extensions": [".js"] }], // allow .js files, instead of .jsx
-    "no-console": 1
+    "import/no-extraneous-dependencies": 0,
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/prefer-to-have-length": "warn",
+    "jest/valid-expect": "error"
   },
-  "plugins": ["react", "react-hooks", "jsx-a11y", "import"],
   "env": {
+    "jest": true,
     "browser": true,
     "node": true
   },

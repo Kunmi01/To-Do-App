@@ -4,7 +4,7 @@ module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
-    contentBase: path.resolve(__dirname, '../', 'build'),
+    contentBase: path.resolve(__dirname, '../', 'dist'),
     host: 'localhost',
     port: 3000,
     open: true,

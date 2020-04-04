@@ -21,6 +21,7 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].[contentHash].css',
+      chunkFilename: '[id].[contentHash].css',
     }),
   ],
   optimization: {
