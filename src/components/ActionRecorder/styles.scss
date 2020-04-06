@@ -1,0 +1,19 @@
+@import '../../scss/base.scss';
+
+.action-recorder {
+  background-color: $background-dark;
+  color: $text-light;
+
+  &__wrapper {
+    @include component-wrapper;
+  }
+
+  &__header {
+    @include component-header;
+  }
+
+  &__inner-wrapper {
+    @include component-inner-wrapper;
+    border-color: $background-light;
+  }
+}

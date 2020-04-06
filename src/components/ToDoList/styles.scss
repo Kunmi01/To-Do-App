@@ -1,0 +1,17 @@
+@import '../../scss/base.scss';
+
+.todo-list {
+  &__wrapper {
+    @include component-wrapper;
+  }
+
+  &__header {
+    @include component-header;
+  }
+
+  &__inner-wrapper {
+    @include component-inner-wrapper;
+    background-color: $background-dark;
+    list-style: none;
+  }
+}

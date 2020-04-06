@@ -1,11 +1,6 @@
+@import './scss/base.scss';
+
 .app {
-  background: lightgray;
-  h1 {
-    color: darkgreen;
-  }
-  .image-div {
-    width: 200px;
-    height: 200px;
-    background: url('./assets/images/Wolf_Multi.png') no-repeat center / 100%;
-  }
+  display: flex;
+  flex-direction: column;
 }

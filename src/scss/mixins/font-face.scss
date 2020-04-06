@@ -1,0 +1,13 @@
+@mixin font-face($name, $filepath) {
+  @font-face {
+    font-family: $name;
+    src: url('#{$filepath}.eot') /* IE9 Compat Modes */;
+    src: url('#{$filepath}.eot?#iefix') format('embedded-opentype') /* IE6-IE8 */,
+      url('#{$filepath}.woff2') format('woff2') /* Super Modern Browsers */,
+      url('#{$filepath}.woff') format('woff') /* Pretty Modern Browsers */,
+      url('#{$filepath}.ttf') format('truetype') /* Safari, Android, iOS */,
+      url('#{$filepath}.svg') format('svg') /* Legacy iOS */;
+    font-weight: normal;
+    font-style: normal;
+  }
+}

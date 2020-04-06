@@ -1,0 +1,73 @@
+@import '../../../../scss/base.scss';
+
+.list-item {
+  background: $background-light;
+  //   border: 1px solid $background-light;
+  border-radius: $unit;
+  margin-bottom: $unit * 5;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &--editable {
+    background-color: lightyellow;
+  }
+
+  &--creation-item {
+    margin-bottom: $unit * 12;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    padding: $unit * 4;
+  }
+
+  &__name,
+  &__description,
+  &__submit {
+    border-radius: $unit;
+  }
+
+  &__name,
+  &__description {
+    border: 1px solid $grey;
+    background-color: inherit;
+    font-size: $font-m;
+    padding: $unit * 2;
+    margin-bottom: $unit * 4;
+
+    &:disabled {
+      border: 0;
+      color: $text-dark;
+    }
+  }
+
+  &__name {
+    font-family: $font-play-bold;
+    height: 38px;
+  }
+
+  &__description {
+    resize: none;
+    height: 38px;
+  }
+
+  &__submit {
+    background-color: $green;
+    border: 0;
+    font-family: $font-play-bold;
+    font-size: $font-m;
+    color: $text-light;
+    padding: $unit * 2 $unit * 4;
+
+    margin-left: auto;
+  }
+
+  &__created {
+    color: $grey;
+    font-size: $font-s;
+    text-align: right;
+  }
+}

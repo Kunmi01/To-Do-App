@@ -1,18 +1,13 @@
 import React from 'react';
-import WolfImage from './assets/images/Wolf_Multi.png';
-import './globalStyles.scss';
+import ActionRecorder from './components/ActionRecorder';
+import ToDoList from './components/ToDoList';
 import './App.scss';
 
 const App = () => {
-  const a = { b: 'random' };
-  const { b } = a;
-
   return (
     <div className="app">
-      <h1>My React App</h1>
-      <img src={WolfImage} alt="wolf-multi" />
-      <div className="image-div" />
-      {b}
+      <ActionRecorder />
+      <ToDoList />
     </div>
   );
 };
