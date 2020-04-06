@@ -9,7 +9,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader', 'eslint-loader'],
+        use: ['babel-loader', 'eslint-loader']
       },
       {
         test: /\.(svg|png|jpg|jpeg|gif)$/,
@@ -19,9 +19,9 @@ module.exports = {
           options: {
             name: '[name].[hash:8].[ext]',
             outputPath: 'static/media',
-            limit: 8192,
-          },
-        },
+            limit: 8192
+          }
+        }
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
@@ -30,16 +30,16 @@ module.exports = {
           loader: 'file-loader',
           options: {
             name: '[name].[hash:8].[ext]',
-            outputPath: 'static/media',
-          },
-        },
-      },
-    ],
+            outputPath: 'static/media'
+          }
+        }
+      }
+    ]
   },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '../', 'src/index.html'),
-    }),
-  ],
+      template: path.resolve(__dirname, '../', 'src/index.html')
+    })
+  ]
 };

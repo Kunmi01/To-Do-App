@@ -38,8 +38,15 @@ section {
 /***** CSS Reset END *****/
 
 /***** Typography START *****/
-@include font-face($name: 'PlayRegular', $filepath: './assets/fonts/play-regular/play-regular');
-@include font-face($name: 'PlayBold', $filepath: './assets/fonts/play-bold/play-bold');
+@include font-face(
+  $name: 'PlayRegular',
+  $filepath: './assets/fonts/play-regular/play-regular'
+);
+
+@include font-face(
+  $name: 'PlayBold',
+  $filepath: './assets/fonts/play-bold/play-bold'
+);
 
 h1 {
   font-size: $font-xxxl;

@@ -7,7 +7,7 @@ module.exports = {
     contentBase: path.resolve(__dirname, '../', 'dist'),
     host: 'localhost',
     port: 3000,
-    open: true,
+    open: true
   },
   module: {
     rules: [
@@ -19,17 +19,17 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              sourceMap: true,
-            },
+              sourceMap: true
+            }
           },
           {
             loader: 'sass-loader',
             options: {
-              sourceMap: true,
-            },
-          },
-        ],
-      },
-    ],
-  },
+              sourceMap: true
+            }
+          }
+        ]
+      }
+    ]
+  }
 };

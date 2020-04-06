@@ -64,7 +64,7 @@ module.exports = {
   moduleNameMapper: {
     '\\.(css|scss)$': '<rootDir>/__mocks__/styleMock.js',
     '\\.(svg|png|jpg|jpeg|gif|woff|woff2|eot|ttf|otf|svg)$':
-      '<rootDir>/__mocks__/fileMock.js',
+      '<rootDir>/__mocks__/fileMock.js'
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -151,7 +151,7 @@ module.exports = {
   transform: {
     '^.+\\.(js|jsx)$': 'babel-jest',
     '.+\\.(css|styl|less|sass|scss)$':
-      '<rootDir>/node_modules/jest-css-modules-transform',
+      '<rootDir>/node_modules/jest-css-modules-transform'
   },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
@@ -161,7 +161,7 @@ module.exports = {
   // unmockedModulePathPatterns: undefined,
 
   // Indicates whether each individual test should be reported during the run
-  verbose: false,
+  verbose: false
 
   // An array of regexp patterns that are matched against all source file paths before re-running tests in watch mode
   // watchPathIgnorePatterns: [],
