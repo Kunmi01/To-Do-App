@@ -6,20 +6,21 @@ const dummyListItems = [
   {
     id: 1,
     name: 'List item name one',
-    description: 'List item description one',
-    created: new Date().toString()
+    description:
+      'List item description one List item description one List item description one List item description one List item description one List item description one List item description one List item description one List item description one List item description one List item description one List item description one ',
+    createdDate: new Date().toString()
   },
   {
     id: 2,
     name: 'List item name two',
     description: 'List item description two',
-    created: new Date().toString()
+    createdDate: new Date().toString()
   },
   {
     id: 3,
     name: 'List item name three',
     description: 'List item description three',
-    created: new Date().toString()
+    createdDate: new Date().toString()
   }
 ];
 
@@ -35,14 +36,15 @@ const ToDoList = () => {
       <div className="todo-list__wrapper">
         <h2 className="todo-list__header">To-do List</h2>
         <ul className="todo-list__inner-wrapper">
-          <ListItem creationItem editable />
+          <ListItem creation editable />
           {listItems.length &&
             listItems.map(item => (
               <ListItem
                 key={item.id}
+                id={item.id}
                 name={item.name}
                 description={item.description}
-                created={item.created}
+                createdDate={item.createdDate}
               />
             ))}
         </ul>

@@ -3,7 +3,7 @@
 
 @mixin component-wrapper {
   width: 100%;
-  max-width: 1170px;
+  max-width: 1080px;
   padding: $unit * 4 $unit * 4 $unit * 8;
   margin: 0 auto;
 
@@ -19,7 +19,5 @@
 
 @mixin component-inner-wrapper {
   border-radius: $unit;
-  border: 1px solid $background-light;
-  padding: $unit * 5;
   min-height: 100px; // TODO: REMOVE THIS
 }

@@ -2,31 +2,45 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './styles.scss';
 
-const ListItem = ({ editable, creationItem, name, description, created }) => {
+const ListItem = ({
+  editable,
+  creation,
+  id,
+  name,
+  description,
+  createdDate
+}) => {
+  const [itemId, setItemId] = useState(null);
   const [itemName, setItemName] = useState('');
   const [itemDescription, setItemDescription] = useState('');
-  const [itemCreated, setItemCreated] = useState('');
+  const [itemCreatedDate, setItemCreatedDate] = useState('');
 
   useEffect(() => {
+    if (id) setItemId(id);
     if (name) setItemName(name);
     if (description) setItemDescription(description);
-    if (created) setItemCreated(created);
+    if (createdDate) setItemCreatedDate(createdDate);
   });
 
   const handleSubmit = e => {
     e.preventDefault();
-    // console.log('Data:', { itemName, itemDescription, itemCreated });
+    console.log('Data:', {
+      itemId,
+      itemName,
+      itemDescription,
+      itemCreatedDate
+    });
   };
 
   const itemClass = `list-item
     ${editable && 'list-item--editable'}
-    ${creationItem && 'list-item--creation-item'}`;
+    ${creation && 'list-item--creation'}`;
 
   return (
     <li className={itemClass}>
       <form className="list-item__form" onSubmit={handleSubmit}>
         <input
-          className="list-item__name"
+          className="list-item__form__name"
           id="name"
           type="text"
           value={itemName}
@@ -35,7 +49,7 @@ const ListItem = ({ editable, creationItem, name, description, created }) => {
           disabled={!editable}
         />
         <textarea
-          className="list-item__description"
+          className="list-item__form__description"
           id="description"
           type="text"
           value={itemDescription}
@@ -44,11 +58,32 @@ const ListItem = ({ editable, creationItem, name, description, created }) => {
           disabled={!editable}
         />
         {editable ? (
-          <button className="list-item__submit" type="submit">
-            Create / Update
+          <button
+            className="list-item__form__button list-item__form__button--submit"
+            type="submit"
+          >
+            {creation ? 'Create' : 'Update'}
           </button>
         ) : (
-          <p className="list-item__created">Created: {itemCreated}</p>
+          <div className="list-item__form__bottom-wrapper">
+            <p className="list-item__form__created">
+              Created: {itemCreatedDate}
+            </p>
+            <div className="list-item__form__buttons-wrapper">
+              <button
+                className="list-item__form__button list-item__form__button--edit"
+                type="button"
+              >
+                Edit
+              </button>
+              <button
+                className="list-item__form__button list-item__form__button--delete"
+                type="button"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
         )}
       </form>
     </li>
@@ -56,19 +91,21 @@ const ListItem = ({ editable, creationItem, name, description, created }) => {
 };
 
 ListItem.propTypes = {
-  creationItem: PropTypes.bool,
+  creation: PropTypes.bool,
   editable: PropTypes.bool,
+  id: PropTypes.number,
   name: PropTypes.string,
   description: PropTypes.string,
-  created: PropTypes.string
+  createdDate: PropTypes.string
 };
 
 ListItem.defaultProps = {
-  creationItem: false,
+  creation: false,
   editable: false,
+  id: null,
   name: '',
   description: '',
-  created: ''
+  createdDate: ''
 };
 
 export default ListItem;
