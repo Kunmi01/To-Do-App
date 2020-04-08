@@ -5,7 +5,7 @@ import { TODO_LIST_ITEMS } from '../../../../utils/constants';
 
 const shortid = require('shortid');
 
-const ListItem = ({
+const ToDoItem = ({
   editable,
   creation,
   id,
@@ -38,9 +38,9 @@ const ListItem = ({
   };
 
   const createItem = (data, items) => {
-    const newListItems = JSON.stringify([...items, data]);
+    const newToDoItems = JSON.stringify([...items, data]);
 
-    localStorage.setItem(TODO_LIST_ITEMS, newListItems);
+    localStorage.setItem(TODO_LIST_ITEMS, newToDoItems);
 
     resetForm();
   };
@@ -50,12 +50,20 @@ const ListItem = ({
 
     newItems[index] = data;
 
-    const newListItems = JSON.stringify(newItems);
+    const newToDoItems = JSON.stringify(newItems);
 
-    localStorage.setItem(TODO_LIST_ITEMS, newListItems);
+    localStorage.setItem(TODO_LIST_ITEMS, newToDoItems);
 
     // TODO: might be able to remove after redux implementation
     setItemEditable(false);
+  };
+
+  const deleteItem = (todoId, items) => {
+    const newToDoItems = JSON.stringify(
+      items.filter(item => item.itemId !== todoId)
+    );
+
+    localStorage.setItem(TODO_LIST_ITEMS, newToDoItems);
   };
 
   const handleSubmit = e => {
@@ -86,25 +94,21 @@ const ListItem = ({
 
   const handleOnDeleteClicked = () => {
     const persistedItems = JSON.parse(localStorage.getItem(TODO_LIST_ITEMS));
-    const newListItems = JSON.stringify(
-      persistedItems.filter(item => item.itemId !== itemId)
-    );
-
-    localStorage.setItem(TODO_LIST_ITEMS, newListItems);
+    deleteItem(itemId, persistedItems);
   };
 
-  const itemClass = `list-item
-    ${itemEditable && 'list-item--editable'}
-    ${creation && 'list-item--creation'}`;
+  const todoItemClass = `todo-item
+    ${itemEditable && 'todo-item--editable'}
+    ${creation && 'todo-item--creation'}`;
 
   const showDescription =
     creation || itemEditable || (!itemEditable && itemDescription);
 
   return (
-    <li className={itemClass}>
-      <form className="list-item__form" onSubmit={handleSubmit}>
+    <li className={todoItemClass}>
+      <form className="todo-item__form" onSubmit={handleSubmit}>
         <input
-          className="list-item__form__name"
+          className="todo-item__form__name"
           id="name"
           type="text"
           value={itemName}
@@ -114,7 +118,7 @@ const ListItem = ({
         />
         {showDescription && (
           <textarea
-            className="list-item__form__description"
+            className="todo-item__form__description"
             id="description"
             type="text"
             value={itemDescription}
@@ -125,27 +129,27 @@ const ListItem = ({
         )}
         {itemEditable ? (
           <button
-            className="list-item__form__button list-item__form__button--submit"
+            className="todo-item__form__button todo-item__form__button--submit"
             type="submit"
             disabled={!itemName}
           >
             {creation ? 'Create' : 'Update'}
           </button>
         ) : (
-          <div className="list-item__form__bottom-wrapper">
-            <p className="list-item__form__created">
+          <div className="todo-item__form__bottom-wrapper">
+            <p className="todo-item__form__created">
               Created: {itemCreatedDate}
             </p>
-            <div className="list-item__form__buttons-wrapper">
+            <div className="todo-item__form__buttons-wrapper">
               <button
-                className="list-item__form__button list-item__form__button--edit"
+                className="todo-item__form__button todo-item__form__button--edit"
                 type="button"
                 onClick={handleOnEditClicked}
               >
                 Edit
               </button>
               <button
-                className="list-item__form__button list-item__form__button--delete"
+                className="todo-item__form__button todo-item__form__button--delete"
                 type="button"
                 onClick={handleOnDeleteClicked}
               >
@@ -159,7 +163,7 @@ const ListItem = ({
   );
 };
 
-ListItem.propTypes = {
+ToDoItem.propTypes = {
   creation: PropTypes.bool,
   editable: PropTypes.bool,
   id: PropTypes.string,
@@ -168,7 +172,7 @@ ListItem.propTypes = {
   createdDate: PropTypes.string
 };
 
-ListItem.defaultProps = {
+ToDoItem.defaultProps = {
   creation: false,
   editable: false,
   id: '',
@@ -177,4 +181,4 @@ ListItem.defaultProps = {
   createdDate: ''
 };
 
-export default ListItem;
+export default ToDoItem;

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { TODO_LIST_ITEMS } from '../../utils/constants';
 
-import ListItem from './components/ListItem';
+import ToDoItem from './components/ToDoItem';
 import './styles.scss';
 
 const ToDoList = () => {
@@ -27,12 +27,12 @@ const ToDoList = () => {
       <div className="todo-list__wrapper">
         <h2 className="todo-list__header">To-do List</h2>
         <ul className="todo-list__inner-wrapper">
-          <ListItem creation editable />
+          <ToDoItem creation editable />
           {!!listItems.length &&
             listItems
               .reverse()
               .map(item => (
-                <ListItem
+                <ToDoItem
                   key={item.itemId}
                   id={item.itemId}
                   name={item.itemName}

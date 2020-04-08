@@ -1,6 +1,6 @@
 @import '../../../../scss/base.scss';
 
-.list-item {
+.todo-item {
   background: $background-dark;
   border-radius: $unit;
   margin-bottom: $unit * 5;
@@ -12,7 +12,7 @@
   &--editable {
     background-color: $light-grey;
 
-    .list-item__form {
+    .todo-item__form {
       &__name,
       &__description {
         background-color: $white;
@@ -59,11 +59,11 @@
     }
 
     &__name {
+      font-family: $font-play-bold;
       font-size: $font-ml;
 
       &:disabled {
         border: 0;
-        font-family: $font-play-bold;
       }
     }
 
@@ -77,6 +77,10 @@
       &:disabled {
         border: 1px solid $grey2;
         font-size: $font-s;
+      }
+
+      &::placeholder {
+        font-style: italic;
       }
 
       @include mq-from('mobile') {
