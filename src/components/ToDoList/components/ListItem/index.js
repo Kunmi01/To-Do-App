@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './styles.scss';
+import { TODO_LIST_ITEMS } from '../../../../utils/constants';
+
+const shortid = require('shortid');
 
 const ListItem = ({
   editable,
@@ -10,31 +13,92 @@ const ListItem = ({
   description,
   createdDate
 }) => {
-  const [itemId, setItemId] = useState(null);
+  const [itemEditable, setItemEditable] = useState(false);
+  const [itemId, setItemId] = useState('');
   const [itemName, setItemName] = useState('');
   const [itemDescription, setItemDescription] = useState('');
   const [itemCreatedDate, setItemCreatedDate] = useState('');
 
   useEffect(() => {
-    if (id) setItemId(id);
-    if (name) setItemName(name);
-    if (description) setItemDescription(description);
-    if (createdDate) setItemCreatedDate(createdDate);
-  });
+    if (editable) {
+      setItemEditable(true);
+    } else {
+      setItemId(id);
+      setItemName(name);
+      setItemDescription(description);
+      setItemCreatedDate(createdDate);
+    }
+  }, []);
+
+  const resetForm = () => {
+    setItemId('');
+    setItemName('');
+    setItemDescription('');
+    setItemCreatedDate('');
+  };
+
+  const createItem = (data, items) => {
+    const newListItems = JSON.stringify([...items, data]);
+
+    localStorage.setItem(TODO_LIST_ITEMS, newListItems);
+
+    resetForm();
+  };
+
+  const updateItem = (index, data, items) => {
+    const newItems = items;
+
+    newItems[index] = data;
+
+    const newListItems = JSON.stringify(newItems);
+
+    localStorage.setItem(TODO_LIST_ITEMS, newListItems);
+
+    // TODO: might be able to remove after redux implementation
+    setItemEditable(false);
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log('Data:', {
-      itemId,
+
+    const persistedItems = JSON.parse(localStorage.getItem(TODO_LIST_ITEMS));
+    const existingIndex = persistedItems.findIndex(
+      item => item.itemId === itemId
+    );
+
+    const formData = {
+      itemId: itemId || shortid.generate(),
       itemName,
       itemDescription,
-      itemCreatedDate
-    });
+      itemCreatedDate: itemCreatedDate || new Date().toString()
+    };
+
+    if (existingIndex >= 0) {
+      updateItem(existingIndex, formData, persistedItems);
+    } else {
+      createItem(formData, persistedItems);
+    }
+  };
+
+  const handleOnEditClicked = () => {
+    setItemEditable(true);
+  };
+
+  const handleOnDeleteClicked = () => {
+    const persistedItems = JSON.parse(localStorage.getItem(TODO_LIST_ITEMS));
+    const newListItems = JSON.stringify(
+      persistedItems.filter(item => item.itemId !== itemId)
+    );
+
+    localStorage.setItem(TODO_LIST_ITEMS, newListItems);
   };
 
   const itemClass = `list-item
-    ${editable && 'list-item--editable'}
+    ${itemEditable && 'list-item--editable'}
     ${creation && 'list-item--creation'}`;
+
+  const showDescription =
+    creation || itemEditable || (!itemEditable && itemDescription);
 
   return (
     <li className={itemClass}>
@@ -44,23 +108,26 @@ const ListItem = ({
           id="name"
           type="text"
           value={itemName}
-          placeholder="Add to-do name..."
+          placeholder="Add a to-do..."
           onChange={e => setItemName(e.target.value)}
-          disabled={!editable}
+          disabled={!itemEditable}
         />
-        <textarea
-          className="list-item__form__description"
-          id="description"
-          type="text"
-          value={itemDescription}
-          placeholder="Add to-do description..."
-          onChange={e => setItemDescription(e.target.value)}
-          disabled={!editable}
-        />
-        {editable ? (
+        {showDescription && (
+          <textarea
+            className="list-item__form__description"
+            id="description"
+            type="text"
+            value={itemDescription}
+            placeholder="Give it a description... (optional)"
+            onChange={e => setItemDescription(e.target.value)}
+            disabled={!itemEditable}
+          />
+        )}
+        {itemEditable ? (
           <button
             className="list-item__form__button list-item__form__button--submit"
             type="submit"
+            disabled={!itemName}
           >
             {creation ? 'Create' : 'Update'}
           </button>
@@ -73,12 +140,14 @@ const ListItem = ({
               <button
                 className="list-item__form__button list-item__form__button--edit"
                 type="button"
+                onClick={handleOnEditClicked}
               >
                 Edit
               </button>
               <button
                 className="list-item__form__button list-item__form__button--delete"
                 type="button"
+                onClick={handleOnDeleteClicked}
               >
                 Delete
               </button>
@@ -93,7 +162,7 @@ const ListItem = ({
 ListItem.propTypes = {
   creation: PropTypes.bool,
   editable: PropTypes.bool,
-  id: PropTypes.number,
+  id: PropTypes.string,
   name: PropTypes.string,
   description: PropTypes.string,
   createdDate: PropTypes.string
@@ -102,7 +171,7 @@ ListItem.propTypes = {
 ListItem.defaultProps = {
   creation: false,
   editable: false,
-  id: null,
+  id: '',
   name: '',
   description: '',
   createdDate: ''

@@ -5,17 +5,90 @@ exports[`<App /> matches snapshot 1`] = `
   <div
     className="app"
   >
-    <h1>
-      My React App
-    </h1>
-    <img
-      alt="wolf-multi"
-      src=""
-    />
-    <div
-      className="image-div"
-    />
-    random
+    <ActionRecorder>
+      <div
+        className="action-recorder"
+      >
+        <div
+          className="action-recorder__wrapper"
+        >
+          <h2
+            className="action-recorder__header"
+          >
+            Action Recorder
+          </h2>
+          <div
+            className="action-recorder__inner-wrapper"
+          >
+            Content here
+          </div>
+        </div>
+      </div>
+    </ActionRecorder>
+    <ToDoList>
+      <div
+        className="todo-list"
+      >
+        <div
+          className="todo-list__wrapper"
+        >
+          <h2
+            className="todo-list__header"
+          >
+            To-do List
+          </h2>
+          <ul
+            className="todo-list__inner-wrapper"
+          >
+            <ListItem
+              createdDate=""
+              creation={true}
+              description=""
+              editable={true}
+              id=""
+              name=""
+            >
+              <li
+                className="list-item
+    list-item--editable
+    list-item--creation"
+              >
+                <form
+                  className="list-item__form"
+                  onSubmit={[Function]}
+                >
+                  <input
+                    className="list-item__form__name"
+                    disabled={false}
+                    id="name"
+                    onChange={[Function]}
+                    placeholder="Add a to-do..."
+                    type="text"
+                    value=""
+                  />
+                  <textarea
+                    className="list-item__form__description"
+                    disabled={false}
+                    id="description"
+                    onChange={[Function]}
+                    placeholder="Give it a description... (optional)"
+                    type="text"
+                    value=""
+                  />
+                  <button
+                    className="list-item__form__button list-item__form__button--submit"
+                    disabled={true}
+                    type="submit"
+                  >
+                    Create
+                  </button>
+                </form>
+              </li>
+            </ListItem>
+          </ul>
+        </div>
+      </div>
+    </ToDoList>
   </div>
 </App>
 `;

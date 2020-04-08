@@ -16,7 +16,7 @@
       &__name,
       &__description {
         background-color: $white;
-        padding: $unit * 2;
+        padding: $unit $unit * 2;
       }
     }
   }
@@ -54,25 +54,30 @@
       }
 
       &::placeholder {
-        font-style: italic;
         color: $grey;
       }
     }
 
     &__name {
-      font-family: $font-play-bold;
+      font-size: $font-ml;
 
       &:disabled {
         border: 0;
+        font-family: $font-play-bold;
       }
     }
 
     &__description {
-      font-size: $font-s;
       min-height: $unit * 32;
+      max-height: $unit * 40;
       padding: $unit * 2;
       overflow: scroll;
       resize: vertical;
+
+      &:disabled {
+        border: 1px solid $grey2;
+        font-size: $font-s;
+      }
 
       @include mq-from('mobile') {
         min-height: $unit * 22;
@@ -80,10 +85,6 @@
 
       @include mq-from('tablet') {
         min-height: $unit * 12;
-      }
-
-      &:disabled {
-        border-color: $grey2;
       }
     }
 
@@ -110,11 +111,16 @@
     &__button {
       border: 0;
       font-family: $font-play-bold;
-      font-size: $font-m;
+      font-size: $font-s;
       color: $text-light;
       padding: $unit * 2 $unit * 4;
       margin-left: $unit * 4;
       cursor: pointer;
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
 
       &--submit {
         background-color: $deep-green;
@@ -137,7 +143,7 @@
 
     &__created {
       color: $grey;
-      font-size: $font-s;
+      font-size: $font-xs;
     }
   }
 }
