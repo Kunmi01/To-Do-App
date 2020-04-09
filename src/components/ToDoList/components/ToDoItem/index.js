@@ -1,9 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+import {
+  createToDoItem,
+  updateToDoItem,
+  deleteToDoItem
+} from '../../../../redux/actions';
+
 import './styles.scss';
-import { TODO_LIST_ITEMS } from '../../../../utils/constants';
 
 const shortid = require('shortid');
+
+const mapDispatchToProps = dispatch => {
+  return { dispatch };
+};
 
 const ToDoItem = ({
   editable,
@@ -11,7 +22,8 @@ const ToDoItem = ({
   id,
   name,
   description,
-  createdDate
+  createdDate,
+  dispatch
 }) => {
   const [itemEditable, setItemEditable] = useState(false);
   const [itemId, setItemId] = useState('');
@@ -37,43 +49,8 @@ const ToDoItem = ({
     setItemCreatedDate('');
   };
 
-  const createItem = (data, items) => {
-    const newToDoItems = JSON.stringify([...items, data]);
-
-    localStorage.setItem(TODO_LIST_ITEMS, newToDoItems);
-
-    resetForm();
-  };
-
-  const updateItem = (index, data, items) => {
-    const newItems = items;
-
-    newItems[index] = data;
-
-    const newToDoItems = JSON.stringify(newItems);
-
-    localStorage.setItem(TODO_LIST_ITEMS, newToDoItems);
-
-    // TODO: might be able to remove after redux implementation
-    setItemEditable(false);
-  };
-
-  const deleteItem = (todoId, items) => {
-    const newToDoItems = JSON.stringify(
-      items.filter(item => item.itemId !== todoId)
-    );
-
-    localStorage.setItem(TODO_LIST_ITEMS, newToDoItems);
-  };
-
   const handleSubmit = e => {
     e.preventDefault();
-
-    const persistedItems = JSON.parse(localStorage.getItem(TODO_LIST_ITEMS));
-    const existingIndex = persistedItems.findIndex(
-      item => item.itemId === itemId
-    );
-
     const formData = {
       itemId: itemId || shortid.generate(),
       itemName,
@@ -81,10 +58,12 @@ const ToDoItem = ({
       itemCreatedDate: itemCreatedDate || new Date().toString()
     };
 
-    if (existingIndex >= 0) {
-      updateItem(existingIndex, formData, persistedItems);
+    if (creation) {
+      dispatch(createToDoItem(formData));
+      resetForm();
     } else {
-      createItem(formData, persistedItems);
+      dispatch(updateToDoItem(formData));
+      setItemEditable(false);
     }
   };
 
@@ -93,8 +72,7 @@ const ToDoItem = ({
   };
 
   const handleOnDeleteClicked = () => {
-    const persistedItems = JSON.parse(localStorage.getItem(TODO_LIST_ITEMS));
-    deleteItem(itemId, persistedItems);
+    dispatch(deleteToDoItem({ itemId }));
   };
 
   const todoItemClass = `todo-item
@@ -169,7 +147,8 @@ ToDoItem.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
   description: PropTypes.string,
-  createdDate: PropTypes.string
+  createdDate: PropTypes.string,
+  dispatch: PropTypes.func.isRequired
 };
 
 ToDoItem.defaultProps = {
@@ -181,4 +160,4 @@ ToDoItem.defaultProps = {
   createdDate: ''
 };
 
-export default ToDoItem;
+export default connect(null, mapDispatchToProps)(ToDoItem);
