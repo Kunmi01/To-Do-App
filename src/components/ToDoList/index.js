@@ -6,17 +6,17 @@ import ToDoItem from './components/ToDoItem';
 import './styles.scss';
 
 const mapStateToProps = state => {
-  return { toDoItems: state.toDoItems };
+  return { toDoList: state.toDoList };
 };
 
-const ToDoList = ({ toDoItems }) => (
+const ToDoList = ({ toDoList }) => (
   <div className="todo-list">
     <div className="todo-list__wrapper">
       <h2 className="todo-list__header">To-do List</h2>
       <ul className="todo-list__inner-wrapper">
         <ToDoItem creation editable />
-        {!!toDoItems.length &&
-          toDoItems
+        {!!toDoList.length &&
+          toDoList
             .map(item => (
               <ToDoItem
                 key={item.itemId}
@@ -33,7 +33,7 @@ const ToDoList = ({ toDoItems }) => (
 );
 
 ToDoList.propTypes = {
-  toDoItems: PropTypes.arrayOf(
+  toDoList: PropTypes.arrayOf(
     PropTypes.shape({
       itemId: PropTypes.string,
       itemName: PropTypes.string,

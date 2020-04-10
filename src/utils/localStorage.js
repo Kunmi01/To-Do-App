@@ -1,6 +1,6 @@
 import { TODO_LIST_ITEMS } from './constants';
 
-export const initializeToDoItems = () => {
+export const initializeToDoList = () => {
   try {
     localStorage.setItem(TODO_LIST_ITEMS, JSON.stringify([]));
     return [];
@@ -9,7 +9,7 @@ export const initializeToDoItems = () => {
   }
 };
 
-export const loadToDoItems = () => {
+export const loadToDoList = () => {
   try {
     const storedItems =
       JSON.parse(localStorage.getItem(TODO_LIST_ITEMS)) || undefined;
@@ -19,9 +19,9 @@ export const loadToDoItems = () => {
   }
 };
 
-export const saveToDoItems = toDoItems => {
+export const saveToDoList = toDoList => {
   try {
-    const serializedItems = JSON.stringify(toDoItems);
+    const serializedItems = JSON.stringify(toDoList);
     localStorage.setItem(TODO_LIST_ITEMS, serializedItems);
   } catch {
     // ignore write errors

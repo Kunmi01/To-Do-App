@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
+import shortid from 'shortid';
 
 import {
   createToDoItem,
@@ -9,8 +11,6 @@ import {
 } from '../../../../redux/actions';
 
 import './styles.scss';
-
-const shortid = require('shortid');
 
 const mapDispatchToProps = dispatch => {
   return { dispatch };
@@ -75,9 +75,11 @@ const ToDoItem = ({
     dispatch(deleteToDoItem({ itemId }));
   };
 
-  const todoItemClass = `todo-item
-    ${itemEditable && 'todo-item--editable'}
-    ${creation && 'todo-item--creation'}`;
+  const todoItemClass = classNames(
+    'todo-item',
+    itemEditable && 'todo-item--editable',
+    creation && 'todo-item--creation'
+  );
 
   const showDescription =
     creation || itemEditable || (!itemEditable && itemDescription);
