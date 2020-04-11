@@ -10,7 +10,7 @@
   }
 
   &--editable {
-    background-color: $light-grey;
+    background-color: $grey2;
 
     .todo-item__form {
       &__name,
@@ -22,6 +22,7 @@
   }
 
   &--creation {
+    background-color: $light-grey;
     margin-bottom: $unit * 12;
   }
 
@@ -31,14 +32,9 @@
     padding: $unit * 4;
 
     &__name,
-    &__description,
-    &__button {
-      border-radius: $unit;
-    }
-
-    &__name,
     &__description {
       border: 1px solid $grey;
+      border-radius: $unit;
       background-color: inherit;
       font-size: $font-m;
       margin-bottom: $unit * 4;
@@ -79,10 +75,6 @@
         font-size: $font-s;
       }
 
-      &::placeholder {
-        font-style: italic;
-      }
-
       @include mq-from('mobile') {
         min-height: $unit * 22;
       }
@@ -114,21 +106,23 @@
 
     &__button {
       border: 0;
+      border-radius: $unit;
       font-family: $font-play-bold;
       font-size: $font-s;
       color: $text-light;
+      opacity: 0.88;
       padding: $unit * 2 $unit * 4;
       margin-left: $unit * 4;
       cursor: pointer;
 
-      &:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
+      &:hover {
+        opacity: 1;
       }
 
-      &--submit {
-        background-color: $deep-green;
-        margin-left: auto;
+      &:disabled {
+        color: $light-grey;
+        opacity: 0.35;
+        cursor: not-allowed;
       }
 
       &--submit {

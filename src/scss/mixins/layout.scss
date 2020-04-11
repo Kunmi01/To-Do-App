@@ -8,16 +8,14 @@
   margin: 0 auto;
 
   @include mq-from('tablet') {
-    padding: $unit * 8;
+    padding: $unit * 7 $unit * 8 $unit * 8;
   }
 }
 
 @mixin component-header {
-  line-height: 0.7;
   margin-bottom: $unit * 6;
 }
 
 @mixin component-inner-wrapper {
   border-radius: $unit;
-  min-height: 100px; // TODO: REMOVE THIS
 }

@@ -14,7 +14,63 @@
 
   &__inner-wrapper {
     @include component-inner-wrapper;
+  }
+
+  &__buttons-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__button {
+    flex-basis: $unit * 25;
+    border: 0;
+    border-radius: $unit;
+    background-color: $background-light;
+    font-family: $font-play-bold;
+    font-size: $font-m;
+    color: $text-dark;
+    opacity: 0.88;
+    padding: $unit * 2 $unit * 4;
+    margin-bottom: $unit * 4;
+    cursor: pointer;
+
+    &:not(:last-child) {
+      margin-right: $unit * 4;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &:disabled {
+      color: $grey2;
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    &--record {
+      color: $dark-red;
+    }
+
+    &--play {
+      color: $deep-green;
+    }
+  }
+
+  &__feedback-wrapper {
+    margin-top: $unit * 4;
+  }
+
+  &__feedback {
     border: 1px solid $background-light;
-    padding: $unit * 5;
+    border-radius: $unit;
+    height: $unit * 32;
+    padding: $unit * 4;
+    margin-top: $unit * 4;
+    overflow-y: scroll;
+
+    @include mq-from('mobile') {
+      height: $unit * 22;
+    }
   }
 }
