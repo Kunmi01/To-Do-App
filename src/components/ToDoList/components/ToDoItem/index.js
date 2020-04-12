@@ -40,7 +40,7 @@ const ToDoItem = ({
       setItemDescription(description);
       setItemCreatedDate(createdDate);
     }
-  }, []);
+  }, [name, description]);
 
   const resetForm = () => {
     setItemId('');

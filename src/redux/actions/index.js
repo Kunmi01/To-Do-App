@@ -2,6 +2,7 @@ import {
   CREATE_TODO_ITEM,
   UPDATE_TODO_ITEM,
   DELETE_TODO_ITEM,
+  CLEAR_TODO_LIST,
   START_RECORDING_ACTIONS,
   STOP_RECORDING_ACTIONS,
   PLAY_RECORDED_ACTIONS,
@@ -18,6 +19,10 @@ export const updateToDoItem = payload => {
 
 export const deleteToDoItem = payload => {
   return { type: DELETE_TODO_ITEM, payload };
+};
+
+export const clearToDoList = () => {
+  return { type: CLEAR_TODO_LIST };
 };
 
 export const startRecordingActions = () => {

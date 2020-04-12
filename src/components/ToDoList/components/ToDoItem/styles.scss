@@ -37,7 +37,7 @@
       border-radius: $unit;
       background-color: inherit;
       font-size: $font-m;
-      margin-bottom: $unit * 4;
+      margin-bottom: $unit * 2;
 
       &:focus {
         outline: none;
@@ -64,6 +64,7 @@
     }
 
     &__description {
+      font-family: $font-play-regular;
       min-height: $unit * 32;
       max-height: $unit * 40;
       padding: $unit * 2;

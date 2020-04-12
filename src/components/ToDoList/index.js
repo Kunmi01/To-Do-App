@@ -35,10 +35,10 @@ const ToDoList = ({ toDoList }) => (
 ToDoList.propTypes = {
   toDoList: PropTypes.arrayOf(
     PropTypes.shape({
-      itemId: PropTypes.string,
-      itemName: PropTypes.string,
+      itemId: PropTypes.string.isRequired,
+      itemName: PropTypes.string.isRequired,
       itemDescription: PropTypes.string,
-      itemCreatedDate: PropTypes.string
+      itemCreatedDate: PropTypes.string.isRequired
     })
   ).isRequired
 };

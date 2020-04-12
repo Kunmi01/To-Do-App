@@ -2,8 +2,10 @@ import {
   CREATE_TODO_ITEM,
   UPDATE_TODO_ITEM,
   DELETE_TODO_ITEM,
+  CLEAR_TODO_LIST,
   START_RECORDING_ACTIONS,
-  STOP_RECORDING_ACTIONS
+  STOP_RECORDING_ACTIONS,
+  CLEAR_RECORDED_ACTIONS
 } from '../actions/action-types';
 import {
   initializeToDoList,
@@ -14,8 +16,9 @@ import {
 
 const initialState = {
   isRecording: false,
-  toDoList: loadToDoList() || initializeToDoList(),
-  recordedActions: loadRecordedActions() || initializeRecordedActions()
+  isPlaying: false,
+  recordedActions: loadRecordedActions() || initializeRecordedActions(),
+  toDoList: loadToDoList() || initializeToDoList()
 };
 
 function rootReducer(state = initialState, action) {
@@ -23,11 +26,23 @@ function rootReducer(state = initialState, action) {
     case CREATE_TODO_ITEM:
     case UPDATE_TODO_ITEM:
     case DELETE_TODO_ITEM:
-      return { ...state, toDoList: action.newToDoList };
+      return {
+        ...state,
+        toDoList: action.newToDoList,
+        recordedActions: action.newRecordedActions || state.recordedActions
+      };
+    case CLEAR_TODO_LIST:
+      return { ...state, toDoList: initializeToDoList() };
     case START_RECORDING_ACTIONS:
-      return { ...state, isRecording: true };
+      return {
+        ...state,
+        isRecording: true,
+        recordedActions: initializeRecordedActions()
+      };
     case STOP_RECORDING_ACTIONS:
       return { ...state, isRecording: false };
+    case CLEAR_RECORDED_ACTIONS:
+      return { ...state, recordedActions: initializeRecordedActions() };
     default:
       return state;
   }

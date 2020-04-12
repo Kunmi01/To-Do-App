@@ -1,0 +1,13 @@
+@import '../../../../scss/base.scss';
+
+.action-capture {
+  background: $light-grey;
+  border-radius: $unit;
+  color: $text-dark;
+  padding: $unit * 4;
+  margin-bottom: $unit * 4;
+
+  &__type {
+    margin-bottom: $unit * 2;
+  }
+}

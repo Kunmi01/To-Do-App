@@ -58,19 +58,11 @@
   }
 
   &__feedback-wrapper {
-    margin-top: $unit * 4;
-  }
-
-  &__feedback {
     border: 1px solid $background-light;
     border-radius: $unit;
-    height: $unit * 32;
+    height: $unit * 33;
     padding: $unit * 4;
     margin-top: $unit * 4;
     overflow-y: scroll;
-
-    @include mq-from('mobile') {
-      height: $unit * 22;
-    }
   }
 }

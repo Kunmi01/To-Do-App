@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import shortid from 'shortid';
 
 import {
   startRecordingActions,
@@ -9,6 +10,7 @@ import {
   clearRecordedActions
 } from '../../redux/actions';
 
+import ActionCapture from './components/ActionCapture';
 import './styles.scss';
 
 const mapStateToProps = state => {
@@ -76,20 +78,19 @@ const ActionRecorder = ({ isRecording, recordedActions, dispatch }) => {
               Clear
             </button>
           </div>
-          <div className="action-recorder__feedback-wrapper">
-            <h4>Recorded actions</h4>
-            <div className="action-recorder__feedback">
-              lorem ipsum dolor set impa lorem ipsum dolor set impa lorem ipsum
-              dolor set impa lorem ipsum dolor set impa lorem ipsum dolor set
-              impa lorem ipsum dolor set impa lorem ipsum dolor set impa lorem
-              ipsum dolor set impa lorem ipsum dolor set impa lorem ipsum dolor
-              set impa lorem ipsum dolor set impa lorem ipsum dolor set impa
-              {/* {!!recordedActions.length &&
-                recordedActions.map(action => (
-                  <div className="action-recorder__feedback">{action}</div>
-                ))} */}
+          {!!recordedActions.length && (
+            <div className="action-recorder__feedback-wrapper">
+              {recordedActions
+                .map(action => (
+                  <ActionCapture
+                    key={shortid.generate()}
+                    type={action.type}
+                    payload={action.payload}
+                  />
+                ))
+                .reverse()}
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
