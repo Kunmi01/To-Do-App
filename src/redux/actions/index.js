@@ -6,6 +6,8 @@ import {
   START_RECORDING_ACTIONS,
   STOP_RECORDING_ACTIONS,
   PLAY_RECORDED_ACTIONS,
+  START_PLAYBACK,
+  STOP_PLAYBACK,
   CLEAR_RECORDED_ACTIONS
 } from './action-types';
 
@@ -35,6 +37,14 @@ export const stopRecordingActions = () => {
 
 export const playRecordedActions = () => {
   return { type: PLAY_RECORDED_ACTIONS };
+};
+
+export const startPlayback = () => {
+  return { type: START_PLAYBACK };
+};
+
+export const stopPlayback = () => {
+  return { type: STOP_PLAYBACK };
 };
 
 export const clearRecordedActions = () => {

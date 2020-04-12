@@ -57,6 +57,12 @@
     }
   }
 
+  &__status {
+    span {
+      color: $grey;
+    }
+  }
+
   &__feedback-wrapper {
     border: 1px solid $background-light;
     border-radius: $unit;

@@ -14,15 +14,20 @@ import ActionCapture from './components/ActionCapture';
 import './styles.scss';
 
 const mapStateToProps = state => {
-  const { isRecording, recordedActions } = state;
-  return { isRecording, recordedActions };
+  const { isRecording, isPlaying, recordedActions } = state;
+  return { isRecording, isPlaying, recordedActions };
 };
 
 const mapDispatchToProps = dispatch => {
   return { dispatch };
 };
 
-const ActionRecorder = ({ isRecording, recordedActions, dispatch }) => {
+const ActionRecorder = ({
+  isRecording,
+  isPlaying,
+  recordedActions,
+  dispatch
+}) => {
   const handleOnRecordClicked = () => {
     dispatch(startRecordingActions());
   };
@@ -39,17 +44,27 @@ const ActionRecorder = ({ isRecording, recordedActions, dispatch }) => {
     dispatch(clearRecordedActions());
   };
 
+  const getRecorderState = () => {
+    let recorderState = 'Stopped';
+    if (isRecording) {
+      recorderState = 'Recording...';
+    } else if (isPlaying) {
+      recorderState = 'Playing...';
+    }
+    return recorderState;
+  };
+
   return (
     <div className="action-recorder">
       <div className="action-recorder__wrapper">
-        <h2 className="action-recorder__header">Action Recorder</h2>
+        <h3 className="action-recorder__header">Action Recorder</h3>
         <div className="action-recorder__inner-wrapper">
           <div className="action-recorder__buttons-wrapper">
             <button
               className="action-recorder__button action-recorder__button--record"
               type="button"
               onClick={handleOnRecordClicked}
-              disabled={isRecording}
+              disabled={isRecording || isPlaying}
             >
               Record
             </button>
@@ -57,7 +72,7 @@ const ActionRecorder = ({ isRecording, recordedActions, dispatch }) => {
               className="action-recorder__button action-recorder__button--stop"
               type="button"
               onClick={handleOnStopClicked}
-              disabled={!isRecording}
+              disabled={!isRecording || isPlaying}
             >
               Stop
             </button>
@@ -65,7 +80,7 @@ const ActionRecorder = ({ isRecording, recordedActions, dispatch }) => {
               className="action-recorder__button action-recorder__button--play"
               type="button"
               onClick={handleOnPlayClicked}
-              disabled={isRecording || !recordedActions.length}
+              disabled={isRecording || isPlaying || !recordedActions.length}
             >
               Play
             </button>
@@ -73,11 +88,15 @@ const ActionRecorder = ({ isRecording, recordedActions, dispatch }) => {
               className="action-recorder__button action-recorder__button--clear"
               type="button"
               onClick={handleOnClearClicked}
-              disabled={isRecording}
+              disabled={isRecording || isPlaying}
             >
               Clear
             </button>
           </div>
+          <p className="action-recorder__status">
+            <span>status: </span>
+            {getRecorderState()}
+          </p>
           {!!recordedActions.length && (
             <div className="action-recorder__feedback-wrapper">
               {recordedActions
@@ -99,6 +118,7 @@ const ActionRecorder = ({ isRecording, recordedActions, dispatch }) => {
 
 ActionRecorder.propTypes = {
   isRecording: PropTypes.bool.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
   recordedActions: PropTypes.arrayOf(
     PropTypes.shape({
       type: PropTypes.string,

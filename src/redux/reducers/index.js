@@ -5,6 +5,8 @@ import {
   CLEAR_TODO_LIST,
   START_RECORDING_ACTIONS,
   STOP_RECORDING_ACTIONS,
+  START_PLAYBACK,
+  STOP_PLAYBACK,
   CLEAR_RECORDED_ACTIONS
 } from '../actions/action-types';
 import {
@@ -34,13 +36,13 @@ function rootReducer(state = initialState, action) {
     case CLEAR_TODO_LIST:
       return { ...state, toDoList: initializeToDoList() };
     case START_RECORDING_ACTIONS:
-      return {
-        ...state,
-        isRecording: true,
-        recordedActions: initializeRecordedActions()
-      };
+      return { ...state, isRecording: true };
     case STOP_RECORDING_ACTIONS:
       return { ...state, isRecording: false };
+    case START_PLAYBACK:
+      return { ...state, isPlaying: true };
+    case STOP_PLAYBACK:
+      return { ...state, isPlaying: false };
     case CLEAR_RECORDED_ACTIONS:
       return { ...state, recordedActions: initializeRecordedActions() };
     default:

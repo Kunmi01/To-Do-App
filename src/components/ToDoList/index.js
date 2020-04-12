@@ -12,7 +12,7 @@ const mapStateToProps = state => {
 const ToDoList = ({ toDoList }) => (
   <div className="todo-list">
     <div className="todo-list__wrapper">
-      <h2 className="todo-list__header">To-do List</h2>
+      <h3 className="todo-list__header">To-do List</h3>
       <ul className="todo-list__inner-wrapper">
         <ToDoItem creation editable />
         {!!toDoList.length &&

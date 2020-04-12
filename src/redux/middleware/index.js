@@ -3,7 +3,9 @@ import {
   clearToDoList,
   createToDoItem,
   updateToDoItem,
-  deleteToDoItem
+  deleteToDoItem,
+  startPlayback,
+  stopPlayback
 } from '../actions';
 import {
   CREATE_TODO_ITEM,
@@ -73,6 +75,7 @@ export const playRecordedActionsMiddleware = ({ getState, dispatch }) => {
       };
 
       if (!isRecording && action.type === PLAY_RECORDED_ACTIONS) {
+        dispatch(startPlayback());
         dispatch(clearToDoList());
 
         recordedActions.forEach(actionRecorded => {
@@ -97,6 +100,7 @@ export const playRecordedActionsMiddleware = ({ getState, dispatch }) => {
               break;
           }
         });
+        waitToExecute(() => dispatch(stopPlayback()));
       }
       return next(action);
     };
