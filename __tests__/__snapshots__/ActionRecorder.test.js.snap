@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActionRecorder renders connected(SMART) component 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [MockFunction],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Connect(ActionRecorder)>
+    <ActionRecorder
+      dispatch={[MockFunction]}
+      isPlaying={false}
+      isRecording={false}
+      recordedActions={Array []}
+    >
+      <div
+        className="action-recorder"
+      >
+        <div
+          className="action-recorder__wrapper"
+        >
+          <h3
+            className="action-recorder__header"
+          >
+            Action Recorder
+          </h3>
+          <div
+            className="action-recorder__inner-wrapper"
+          >
+            <div
+              className="action-recorder__buttons-wrapper"
+            >
+              <button
+                className="action-recorder__button action-recorder__button--record"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                Record
+              </button>
+              <button
+                className="action-recorder__button action-recorder__button--stop"
+                disabled={true}
+                onClick={[Function]}
+                type="button"
+              >
+                Stop
+              </button>
+              <button
+                className="action-recorder__button action-recorder__button--play"
+                disabled={true}
+                onClick={[Function]}
+                type="button"
+              >
+                Play
+              </button>
+              <button
+                className="action-recorder__button action-recorder__button--clear"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                Clear
+              </button>
+            </div>
+            <p
+              className="action-recorder__status"
+            >
+              <span>
+                status: 
+              </span>
+              Stopped
+            </p>
+          </div>
+        </div>
+      </div>
+    </ActionRecorder>
+  </Connect(ActionRecorder)>
+</Provider>
+`;

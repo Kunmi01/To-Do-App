@@ -1,17 +1,14 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 import App from '../src/App';
 
-describe('<App />', () => {
-  const wrapper = mount(<App />);
+describe('App', () => {
+  const wrapper = shallow(<App />);
 
-  it('renders', () => {
-    expect(wrapper.find(App).exists()).toBe(true);
-  });
-
-  it('matches snapshot', () => {
+  it('renders DUMB component', () => {
+    expect(wrapper).toHaveLength(1);
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

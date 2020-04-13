@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToDoItem renders connected(SMART) component 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [MockFunction],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Connect(ToDoItem)>
+    <ToDoItem
+      createdDate=""
+      creation={false}
+      description=""
+      dispatch={[MockFunction]}
+      editable={false}
+      id=""
+      name=""
+    >
+      <li
+        className="todo-item"
+      >
+        <form
+          className="todo-item__form"
+          onSubmit={[Function]}
+        >
+          <input
+            className="todo-item__form__name"
+            disabled={true}
+            id="name"
+            onChange={[Function]}
+            placeholder="Add a to-do..."
+            type="text"
+            value=""
+          />
+          <div
+            className="todo-item__form__bottom-wrapper"
+          >
+            <p
+              className="todo-item__form__created"
+            >
+              Created: 
+            </p>
+            <div
+              className="todo-item__form__buttons-wrapper"
+            >
+              <button
+                className="todo-item__form__button todo-item__form__button--edit"
+                onClick={[Function]}
+                type="button"
+              >
+                Edit
+              </button>
+              <button
+                className="todo-item__form__button todo-item__form__button--delete"
+                onClick={[Function]}
+                type="button"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </form>
+      </li>
+    </ToDoItem>
+  </Connect(ToDoItem)>
+</Provider>
+`;

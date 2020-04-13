@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToDoList renders connected(SMART) component 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Connect(ToDoList)>
+    <ToDoList
+      dispatch={[Function]}
+      toDoList={Array []}
+    >
+      <div
+        className="todo-list"
+      >
+        <div
+          className="todo-list__wrapper"
+        >
+          <h3
+            className="todo-list__header"
+          >
+            To-do List
+          </h3>
+          <ul
+            className="todo-list__inner-wrapper"
+          >
+            <Connect(ToDoItem)
+              creation={true}
+              editable={true}
+            >
+              <ToDoItem
+                createdDate=""
+                creation={true}
+                description=""
+                dispatch={[Function]}
+                editable={true}
+                id=""
+                name=""
+              >
+                <li
+                  className="todo-item todo-item--editable todo-item--creation"
+                >
+                  <form
+                    className="todo-item__form"
+                    onSubmit={[Function]}
+                  >
+                    <input
+                      className="todo-item__form__name"
+                      disabled={false}
+                      id="name"
+                      onChange={[Function]}
+                      placeholder="Add a to-do..."
+                      type="text"
+                      value=""
+                    />
+                    <textarea
+                      className="todo-item__form__description"
+                      disabled={false}
+                      id="description"
+                      onChange={[Function]}
+                      placeholder="Give it a description... (optional)"
+                      type="text"
+                      value=""
+                    />
+                    <button
+                      className="todo-item__form__button todo-item__form__button--submit"
+                      disabled={true}
+                      type="submit"
+                    >
+                      Create
+                    </button>
+                  </form>
+                </li>
+              </ToDoItem>
+            </Connect(ToDoItem)>
+          </ul>
+        </div>
+      </div>
+    </ToDoList>
+  </Connect(ToDoList)>
+</Provider>
+`;

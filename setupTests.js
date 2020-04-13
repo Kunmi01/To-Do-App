@@ -11,7 +11,6 @@ const { document } = new JSDOM('').window;
 global.document = document;
 global.window = document.defaultView;
 global.HTMLElement = window.HTMLElement;
-global.HTMLAnchorElement = window.HTMLAnchorElement;
 
 Object.keys(document.defaultView).forEach(property => {
   if (typeof global[property] === 'undefined') {
@@ -19,8 +18,6 @@ Object.keys(document.defaultView).forEach(property => {
     global[property] = document.defaultView[property];
   }
 });
-
-// console.log('exposedProperties: ', exposedProperties);
 
 global.navigator = {
   userAgent: 'node.js'

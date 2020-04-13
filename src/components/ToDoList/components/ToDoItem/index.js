@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch => {
   return { dispatch };
 };
 
-const ToDoItem = ({
+export const ToDoItem = ({
   editable,
   creation,
   id,

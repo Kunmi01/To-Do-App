@@ -2,23 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import ToDoItem from './components/ToDoItem';
+import ToDoItemContainer from './components/ToDoItem';
 import './styles.scss';
 
 const mapStateToProps = state => {
   return { toDoList: state.toDoList };
 };
 
-const ToDoList = ({ toDoList }) => (
+export const ToDoList = ({ toDoList }) => (
   <div className="todo-list">
     <div className="todo-list__wrapper">
       <h3 className="todo-list__header">To-do List</h3>
       <ul className="todo-list__inner-wrapper">
-        <ToDoItem creation editable />
+        <ToDoItemContainer creation editable />
         {!!toDoList.length &&
           toDoList
             .map(item => (
-              <ToDoItem
+              <ToDoItemContainer
                 key={item.itemId}
                 id={item.itemId}
                 name={item.itemName}

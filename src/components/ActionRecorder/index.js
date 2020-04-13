@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => {
   return { dispatch };
 };
 
-const ActionRecorder = ({
+export const ActionRecorder = ({
   isRecording,
   isPlaying,
   recordedActions,
