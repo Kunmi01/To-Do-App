@@ -9,6 +9,21 @@
     margin-bottom: 0;
   }
 
+  &:not(.todo-item--creation) {
+    overflow: hidden;
+    animation: expand_down 0.33s ease-in 0s 1 normal;
+    @keyframes expand_down {
+      from {
+        opacity: 0;
+        max-height: 0;
+      }
+      to {
+        opacity: 1;
+        max-height: 500px;
+      }
+    }
+  }
+
   &--editable {
     background-color: $grey2;
 

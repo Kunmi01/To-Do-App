@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 import shortid from 'shortid';
 
 import {
@@ -13,8 +14,7 @@ import {
 import ActionCapture from './components/ActionCapture';
 import './styles.scss';
 
-const mapStateToProps = state => {
-  const { isRecording, isPlaying, recordedActions } = state;
+const mapStateToProps = ({ isRecording, isPlaying, recordedActions }) => {
   return { isRecording, isPlaying, recordedActions };
 };
 
@@ -53,6 +53,11 @@ export const ActionRecorder = ({
     }
     return recorderState;
   };
+
+  const feedbackWrapperClassName = classNames(
+    'action-recorder__feedback-wrapper',
+    !!recordedActions.length && 'action-recorder__feedback-wrapper--expanded'
+  );
 
   return (
     <div className="action-recorder">
@@ -97,9 +102,9 @@ export const ActionRecorder = ({
             <span>status: </span>
             {getRecorderState()}
           </p>
-          {!!recordedActions.length && (
-            <div className="action-recorder__feedback-wrapper">
-              {recordedActions
+          <div className={feedbackWrapperClassName}>
+            {!!recordedActions.length &&
+              recordedActions
                 .map(action => (
                   <ActionCapture
                     key={shortid.generate()}
@@ -108,8 +113,7 @@ export const ActionRecorder = ({
                   />
                 ))
                 .reverse()}
-            </div>
-          )}
+          </div>
         </div>
       </div>
     </div>

@@ -78,6 +78,9 @@ exports[`ActionRecorder renders connected(SMART) component 1`] = `
               </span>
               Stopped
             </p>
+            <div
+              className="action-recorder__feedback-wrapper"
+            />
           </div>
         </div>
       </div>
