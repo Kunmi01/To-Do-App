@@ -83,7 +83,7 @@
       min-height: $unit * 32;
       max-height: $unit * 40;
       padding: $unit * 2;
-      overflow: scroll;
+      overflow: scrollY;
       resize: vertical;
 
       &:disabled {
